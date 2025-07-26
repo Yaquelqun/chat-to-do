@@ -1,0 +1,29 @@
+<aside class="sidebar" data-controller="sidebar" style="--sidebar-width: 13vw;">
+  <div class="sidebar-content">
+    <!-- Application Name Header -->
+    <div class="sidebar-header">
+      <h1 class="app-name"><%= application_name %></h1>
+    </div>
+
+    <!-- Main Content Area (for future navigation items) -->
+    <div class="sidebar-main">
+      <!-- Reserved for future navigation items -->
+    </div>
+
+    <!-- User Menu Footer -->
+    <div class="sidebar-footer">
+      <div class="user-menu" data-sidebar-target="userMenu">
+        <button class="user-button" data-action="click->sidebar#toggleUserMenu" type="button">
+          <%= user.pseudo %>
+        </button>
+        
+        <div class="user-dropdown" data-sidebar-target="dropdown" style="display: none;">
+          <%= link_to "Logout", logout_path, method: :delete, class: "dropdown-item" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resize Handle -->
+  <div class="resize-handle" data-action="mousedown->sidebar#startResize" data-sidebar-target="resizeHandle"></div>
+</aside>

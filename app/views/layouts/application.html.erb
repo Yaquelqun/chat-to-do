@@ -26,21 +26,26 @@
   </head>
 
   <body>
-    <!-- Flash Messages -->
-    <% if flash[:notice] %>
-      <div class="flash-notice">
-        <%= flash[:notice] %>
-      </div>
+    <% if logged_in? %>
+      <%= render SidebarComponent.new(user: current_user) %>
     <% end %>
+    <div class="<%= logged_in? ? 'main-content' : '' %>">
+      <!-- Flash Messages -->
+      <% if flash[:notice] %>
+        <div class="flash-notice">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
 
-    <% if flash[:alert] %>
-      <div class="flash-alert">
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
+      <% if flash[:alert] %>
+        <div class="flash-alert">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
 
-    <main>
-      <%= yield %>
-    </main>
+      <main>
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>

@@ -20,5 +20,5 @@ Rails.application.routes.draw do
   get "/dashboard", to: "dashboard#show"
 
   # Defines the root path route ("/")
-  root "sessions#new"
+  root "dashboard#show"
 end
