@@ -38,5 +38,9 @@ module ChatToDo
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # ViewComponent configuration
+    config.view_component.generate.preview = true
+    config.view_component.preview_paths << "#{Rails.root}/spec/components/previews"
   end
 end

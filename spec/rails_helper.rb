@@ -13,6 +13,12 @@ require 'rspec/rails'
 # Require FactoryBot for creating test data
 require 'factory_bot_rails'
 
+# Require ViewComponent test helpers
+require "view_component/test_helpers"
+
+# Require Capybara for component testing
+require "capybara/rspec"
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -40,6 +46,10 @@ end
 RSpec.configure do |config|
   # Include FactoryBot syntax methods
   config.include FactoryBot::Syntax::Methods
+  
+  # Include ViewComponent test helpers
+  config.include ViewComponent::TestHelpers, type: :component
+  config.include Capybara::RSpecMatchers, type: :component
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [

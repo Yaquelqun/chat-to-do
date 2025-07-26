@@ -8,3 +8,78 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* Dark Mode Theme for MVP.css */
+:root {
+  --color: #e5e7eb;
+  --color-accent: #f3f4f6;
+  --color-bg: #1f2937;
+  --color-bg-secondary: #374151;
+  --color-secondary: #9ca3af;
+  --color-secondary-accent: #6b7280;
+  --color-shadow: #111827;
+  --color-text: #f9fafb;
+  --color-text-secondary: #d1d5db;
+  --border-radius: 5px;
+  --box-shadow: 2px 2px 10px var(--color-shadow);
+  --color-link: #60a5fa;
+  --color-table: #374151;
+  --color-table-header: #4b5563;
+}
+
+/* Flash Message Styles */
+.flash-notice {
+  background-color: #065f46;
+  color: #d1fae5;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  border-left: 4px solid #10b981;
+}
+
+.flash-alert {
+  background-color: #7f1d1d;
+  color: #fee2e2;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  border-left: 4px solid #ef4444;
+}
+
+/* Dark mode specific overrides */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Form elements dark theme */
+input, textarea, select {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-secondary);
+  color: var(--color-text);
+}
+
+/* Button dark theme */
+button {
+  background-color: var(--color-link);
+  color: var(--color-bg);
+}
+
+button:hover {
+  background-color: #3b82f6;
+}
+
+/* Table dark theme */
+table {
+  background-color: var(--color-table);
+}
+
+thead {
+  background-color: var(--color-table-header);
+}
+
+/* Code blocks dark theme */
+code, pre {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-accent);
+}

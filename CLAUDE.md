@@ -163,6 +163,7 @@ Whenever possible, follow Sandi Metz Object oriented principles described in her
 # Frontend Development Guidelines
 
 - When doing Frontend work, keep the javascript to an absolute minimum and instead leverage Rails Hotwire
+- Frontend should uses ViewComponents
 
 # Myths and Misconceptions about Testing
 
