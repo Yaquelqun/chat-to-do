@@ -2,7 +2,7 @@
 class DashboardController < ApplicationController
   before_action :require_user
 
-  def index
+  def show
     @user = current_user
   end
 end

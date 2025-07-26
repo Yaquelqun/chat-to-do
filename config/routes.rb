@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   # Dashboard route
-  get "/dashboard", to: "dashboard#index"
+  get "/dashboard", to: "dashboard#show"
 
   # Defines the root path route ("/")
   root "sessions#new"
