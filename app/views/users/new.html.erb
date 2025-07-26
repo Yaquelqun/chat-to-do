@@ -1,0 +1,118 @@
+<% content_for :title, "Sign Up - Chat To Do" %>
+
+<div class="signup-container">
+  <div class="signup-card">
+    <!-- Header -->
+    <div class="signup-header">
+      <h1>Join Us Today</h1>
+      <p>Create your Chat To Do account</p>
+    </div>
+
+    <!-- Form -->
+    <div class="signup-form">
+      <%= form_with model: @user, url: signup_path, local: true, 
+                    class: "form", 
+                    data: { turbo_frame: false } do |f| %>
+        
+        <!-- Flash Messages -->
+        <% if flash[:alert] %>
+          <div class="alert alert-error">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+
+        <!-- Display Validation Errors -->
+        <% if @user.errors.any? %>
+          <div class="error-messages">
+            <h3>Please fix the following errors:</h3>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <!-- Email Field -->
+        <div class="field-group">
+          <%= f.label :email, class: "field-label" %>
+          <%= f.email_field :email, 
+                            class: "field-input #{'field-error' if @user.errors[:email].any?}",
+                            placeholder: "Enter your email address",
+                            required: true,
+                            autofocus: true,
+                            value: @user.email %>
+          <% if @user.errors[:email].any? %>
+            <p class="field-error-message"><%= @user.errors[:email].first %></p>
+          <% end %>
+        </div>
+
+        <!-- Pseudo Field -->
+        <div class="field-group">
+          <%= f.label :pseudo, "Username", class: "field-label" %>
+          <%= f.text_field :pseudo, 
+                           class: "field-input #{'field-error' if @user.errors[:pseudo].any?}",
+                           placeholder: "Choose a username",
+                           required: true,
+                           value: @user.pseudo %>
+          <% if @user.errors[:pseudo].any? %>
+            <p class="field-error-message"><%= @user.errors[:pseudo].first %></p>
+          <% end %>
+        </div>
+
+        <!-- Password Field -->
+        <div class="field-group">
+          <%= f.label :password, class: "field-label" %>
+          <%= f.password_field :password, 
+                               class: "field-input #{'field-error' if @user.errors[:password].any?}",
+                               placeholder: "Enter your password",
+                               required: true %>
+          <% if @user.errors[:password].any? %>
+            <p class="field-error-message"><%= @user.errors[:password].first %></p>
+          <% end %>
+        </div>
+
+        <!-- Password Confirmation Field -->
+        <div class="field-group">
+          <%= f.label :password_confirmation, "Confirm Password", class: "field-label" %>
+          <%= f.password_field :password_confirmation, 
+                               class: "field-input #{'field-error' if @user.errors[:password_confirmation].any?}",
+                               placeholder: "Confirm your password",
+                               required: true %>
+          <% if @user.errors[:password_confirmation].any? %>
+            <p class="field-error-message"><%= @user.errors[:password_confirmation].first %></p>
+          <% end %>
+        </div>
+
+        <!-- Terms Agreement -->
+        <div class="terms-agreement">
+          <input type="checkbox" class="terms-checkbox" required>
+          <label class="terms-label">
+            I agree to the 
+            <a href="#" class="terms-link">Terms of Service</a> 
+            and 
+            <a href="#" class="terms-link">Privacy Policy</a>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <%= f.submit "Create Account", 
+                     class: "submit-button",
+                     data: { disable_with: "Creating Account..." } %>
+      <% end %>
+
+      <!-- Divider -->
+      <div class="form-footer">
+        <p class="signup-link">
+          Already have an account? 
+          <%= link_to "Sign In", login_path, class: "signup-link-anchor" %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="page-footer">
+    <p>&copy; 2025 Chat To Do. Built with Ruby on Rails.</p>
+  </div>
+</div>

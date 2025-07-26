@@ -1,0 +1,69 @@
+<% content_for :title, "Sign In - Chat To Do" %>
+
+<div class="signin-container">
+  <div class="signin-card">
+    <!-- Header -->
+    <div class="signin-header">
+      <h1>Welcome Back</h1>
+      <p>Sign in to your Chat To Do account</p>
+    </div>
+
+    <!-- Form -->
+    <div class="signin-form">
+      <%= form_with scope: :session, url: login_path, local: true, 
+                    class: "form", 
+                    data: { turbo_frame: false } do |f| %>
+        
+        <!-- Flash Messages -->
+        <% if flash[:alert] %>
+          <div class="alert alert-error">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+
+        <!-- Email Field -->
+        <div class="field-group">
+          <%= f.label :email, class: "field-label" %>
+          <%= f.email_field :email, 
+                            class: "field-input",
+                            placeholder: "Enter your email address",
+                            required: true,
+                            autofocus: true %>
+        </div>
+
+        <!-- Password Field -->
+        <div class="field-group">
+          <%= f.label :password, class: "field-label" %>
+          <%= f.password_field :password, 
+                               class: "field-input",
+                               placeholder: "Enter your password",
+                               required: true %>
+        </div>
+
+        <!-- Remember Me -->
+        <div class="remember-me">
+          <%= f.check_box :remember_me, class: "remember-checkbox" %>
+          <%= f.label :remember_me, "Remember me", class: "remember-label" %>
+        </div>
+
+        <!-- Submit Button -->
+        <%= f.submit "Sign In", 
+                     class: "submit-button",
+                     data: { disable_with: "Signing In..." } %>
+      <% end %>
+
+      <!-- Divider -->
+      <div class="form-footer">
+        <p class="signin-link">
+          Don't have an account? 
+          <%= link_to "Sign Up", signup_path, class: "signin-link-anchor" %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="page-footer">
+    <p>&copy; 2025 Chat To Do. Built with Ruby on Rails.</p>
+  </div>
+</div>

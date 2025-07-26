@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_to root_path, notice: "Successfully logged in!"
+      redirect_to dashboard_path, notice: "Successfully logged in!"
     else
       flash.now[:alert] = "Invalid email or password"
       render :new, status: :unprocessable_entity
