@@ -1,5 +1,5 @@
 class ComponentGenerator < Rails::Generators::NamedBase
-  source_root File.expand_path('templates', __dir__)
+  source_root File.expand_path("templates", __dir__)
 
   class_option :skip_spec, type: :boolean, default: false, desc: "Skip creating spec file"
   class_option :skip_preview, type: :boolean, default: false, desc: "Skip creating preview file"

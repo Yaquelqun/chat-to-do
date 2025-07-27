@@ -46,7 +46,7 @@ end
 RSpec.configure do |config|
   # Include FactoryBot syntax methods
   config.include FactoryBot::Syntax::Methods
-  
+
   # Include ViewComponent test helpers
   config.include ViewComponent::TestHelpers, type: :component
   config.include Capybara::RSpecMatchers, type: :component

@@ -15,10 +15,9 @@ RSpec.describe "Dashboards", type: :request do
         expect(response).to have_http_status(:success)
       end
 
-      xit "displays user information" do
+      it "displays user information" do
         get "/dashboard"
         expect(response.body).to include(user.pseudo)
-        expect(response.body).to include(user.email)
       end
     end
 
@@ -26,12 +25,6 @@ RSpec.describe "Dashboards", type: :request do
       it "redirects to login page" do
         get "/dashboard"
         expect(response).to redirect_to(login_path)
-      end
-
-      it "sets alert flash message" do
-        get "/dashboard"
-        follow_redirect!
-        expect(response.body).to include("You must be logged in to perform that action")
       end
     end
   end

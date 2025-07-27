@@ -2,7 +2,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  has_many :task_users, as: :user, dependent: :destroy
+  has_many :task_users, dependent: :destroy
   has_many :tasks, through: :task_users
 
   validates :email, presence: true,

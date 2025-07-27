@@ -62,7 +62,7 @@ group :development, :test do
 
   # Faker for generating fake data [https://github.com/faker-ruby/faker]
   gem "faker"
-  
+
   # Capybara for integration testing and component testing
   gem "capybara"
 end
