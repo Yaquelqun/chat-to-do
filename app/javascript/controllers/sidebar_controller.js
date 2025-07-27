@@ -4,6 +4,7 @@ export default class extends Controller {
   static targets = ["userMenu", "dropdown", "resizeHandle"]
 
   connect() {
+    console.log("Sidebar controller connected")
     this.isResizing = false
     this.startX = 0
     this.startWidth = 0
@@ -15,6 +16,13 @@ export default class extends Controller {
     // Handle clicks outside dropdown to close it
     this.boundClickOutside = this.handleClickOutside.bind(this)
     document.addEventListener("click", this.boundClickOutside)
+    
+    // Debug: Check if resize handle exists
+    if (this.hasResizeHandleTarget) {
+      console.log("Resize handle found:", this.resizeHandleTarget)
+    } else {
+      console.error("Resize handle target not found!")
+    }
   }
 
   disconnect() {
@@ -47,6 +55,7 @@ export default class extends Controller {
 
   // Start resize operation
   startResize(event) {
+    console.log("Start resize triggered", event)
     event.preventDefault()
     
     this.isResizing = true
@@ -56,6 +65,8 @@ export default class extends Controller {
     const sidebar = this.element
     const rect = sidebar.getBoundingClientRect()
     this.startWidth = rect.width
+    
+    console.log("Initial width:", this.startWidth)
     
     // Add mouse event listeners for resize
     document.addEventListener("mousemove", this.boundMouseMove)

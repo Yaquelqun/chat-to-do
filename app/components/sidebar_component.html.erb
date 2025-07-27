@@ -18,7 +18,7 @@
         </button>
         
         <div class="user-dropdown" data-sidebar-target="dropdown" style="display: none;">
-          <%= link_to "Logout", logout_path, method: :delete, class: "dropdown-item" %>
+          <%= link_to "Logout", logout_path, data: { "turbo-method": "delete" }, class: "dropdown-item" %>
         </div>
       </div>
     </div>

@@ -96,6 +96,7 @@ code, pre {
   background-color: var(--color-bg-secondary);
   border-right: 1px solid var(--color-secondary-accent);
   display: flex;
+  flex-direction: row;
   z-index: 100;
 }
 
@@ -179,10 +180,12 @@ code, pre {
 
 .resize-handle {
   width: 4px;
+  height: 100vh;
   background-color: var(--color-secondary-accent);
   cursor: col-resize;
   transition: background-color 0.2s ease;
   opacity: 0.6;
+  flex-shrink: 0;
 }
 
 .resize-handle:hover {
