@@ -52,10 +52,10 @@ RSpec.describe Task, type: :model do
 
   describe "constants" do
     it "defines correct state constants" do
-      expect(Task::TODO).to eq("to do")
+      expect(Task::TODO).to eq("todo")
       expect(Task::ONGOING).to eq("ongoing")
       expect(Task::DONE).to eq("done")
-      expect(Task::STATES).to eq([ "to do", "ongoing", "done" ])
+      expect(Task::STATES).to eq([ "todo", "ongoing", "done" ])
     end
   end
 end

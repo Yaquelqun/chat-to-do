@@ -32,15 +32,11 @@
     <div class="<%= logged_in? ? 'main-content' : '' %>">
       <!-- Flash Messages -->
       <% if flash[:notice] %>
-        <div class="flash-notice">
-          <%= flash[:notice] %>
-        </div>
+        <%= render FlashComponent.new(type: :notice, message: flash[:notice]) %>
       <% end %>
 
       <% if flash[:alert] %>
-        <div class="flash-alert">
-          <%= flash[:alert] %>
-        </div>
+        <%= render FlashComponent.new(type: :alert, message: flash[:alert]) %>
       <% end %>
 
       <main>
