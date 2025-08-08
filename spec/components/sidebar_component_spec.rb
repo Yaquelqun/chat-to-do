@@ -75,5 +75,15 @@ RSpec.describe SidebarComponent, type: :component do
 
       expect(page).to have_css(".user-dropdown[style*='display: none']", visible: false)
     end
+
+    it "includes create task button" do
+      component = described_class.new(user: user)
+
+      render_inline(component)
+
+      expect(page).to have_css(".create-task-button")
+      expect(page).to have_button("Create Task")
+      expect(page).to have_css("[data-action='click->sidebar#openTaskModal']")
+    end
   end
 end

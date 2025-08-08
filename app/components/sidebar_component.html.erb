@@ -5,9 +5,11 @@
       <h1 class="app-name"><%= application_name %></h1>
     </div>
 
-    <!-- Main Content Area (for future navigation items) -->
+    <!-- Main Content Area -->
     <div class="sidebar-main">
-      <!-- Reserved for future navigation items -->
+      <button type="button" class="create-task-button" data-action="click->sidebar#openTaskModal">
+        Create Task
+      </button>
     </div>
 
     <!-- User Menu Footer -->
@@ -27,3 +29,10 @@
   <!-- Resize Handle -->
   <div class="resize-handle" data-action="mousedown->sidebar#startResize" data-sidebar-target="resizeHandle"></div>
 </aside>
+
+<!-- Task Creation Modal (initially hidden) -->
+<div id="create-task-modal" style="display: none;">
+  <%= render ModalComponent.new(id: "create-task-modal", title: "Create New Task") do %>
+    <%= render TaskFormComponent.new(current_user: user) %>
+  <% end %>
+</div>

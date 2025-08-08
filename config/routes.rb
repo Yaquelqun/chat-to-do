@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
+  # Task routes
+  resources :tasks, only: [ :create ]
+
   # Dashboard route
   get "/dashboard", to: "dashboard#show"
 

@@ -114,4 +114,23 @@ export default class extends Controller {
     document.body.style.cursor = ""
     document.body.style.userSelect = ""
   }
+
+  // Open task creation modal
+  openTaskModal(event) {
+    event.preventDefault()
+    
+    const modal = document.getElementById("create-task-modal")
+    if (modal) {
+      modal.style.display = "flex"
+      
+      // Get the modal controller and show it
+      const modalController = this.application.getControllerForElementAndIdentifier(
+        modal.querySelector("[data-controller='modal']"), 
+        "modal"
+      )
+      if (modalController) {
+        modalController.show()
+      }
+    }
+  }
 }

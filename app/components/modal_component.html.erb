@@ -1,0 +1,16 @@
+<div <%= tag.attributes modal_attributes %>>
+  <div class="modal-backdrop" data-action="click->modal#closeOnBackdrop"></div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="<%= title_id %>"><%= title %></h2>
+        <button type="button" class="modal-close" data-action="click->modal#close" aria-label="Close">
+          ×
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= content %>
+      </div>
+    </div>
+  </div>
+</div>
