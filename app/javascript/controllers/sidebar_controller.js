@@ -90,8 +90,8 @@ export default class extends Controller {
     const viewportWidth = window.innerWidth
     const newWidthVw = (newWidth / viewportWidth) * 100
     
-    // Apply constraints: min 180px, max 25vw
-    const minWidthVw = (180 / viewportWidth) * 100
+    // Apply constraints: min 160px, max 25vw  
+    const minWidthVw = (160 / viewportWidth) * 100
     const maxWidthVw = 25
     
     const constrainedWidthVw = Math.max(minWidthVw, Math.min(maxWidthVw, newWidthVw))
