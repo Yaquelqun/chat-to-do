@@ -23,7 +23,7 @@ RSpec.describe "Tasks", type: :request do
 
       it "returns a successful response" do
         get task_path(task)
-        
+
         expect(response).to be_successful
         expect(response.body).to include("Test Task")
         expect(response.body).to include("Test Description")
@@ -31,14 +31,20 @@ RSpec.describe "Tasks", type: :request do
 
       it "shows creator information" do
         get task_path(task)
-        
+
         expect(response.body).to include(creator.pseudo)
       end
 
       it "shows assignee information" do
         get task_path(task)
-        
+
         expect(response.body).to include(assignee.pseudo)
+      end
+
+      it "displays task title and status in a single header" do
+        get task_path(task)
+
+        expect(response.body).to include('<h1 class="task-header task-state-todo">Test Task - Todo</h1>')
       end
     end
 
@@ -65,7 +71,7 @@ RSpec.describe "Tasks", type: :request do
 
       it "redirects to login page" do
         get task_path(task)
-        
+
         expect(response).to redirect_to(login_path)
       end
     end

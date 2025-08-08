@@ -1,4 +1,4 @@
-<h1><%= @task.title %></h1>
+<h1 class="task-header task-state-<%= @task.state %>"><%= @task.title %> - <%= @task.state.titleize %></h1>
 
 <% if @task.description.present? %>
   <p><%= @task.description %></p>
@@ -17,5 +17,4 @@
   </div>
 <% end %>
 
-<p>Status: <%= @task.state.titleize %></p>
 <p>Created: <%= @task.created_at.strftime("%B %d, %Y") %></p>
