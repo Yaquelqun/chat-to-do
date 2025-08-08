@@ -16,7 +16,7 @@ class TasksController < ApplicationController
         format.json do
           render json: {
             status: "success",
-            task: task_json(result.task)
+            task: task_json(result.result)
           }, status: :created
         end
         format.html { redirect_to dashboard_path, notice: "Task created successfully!" }

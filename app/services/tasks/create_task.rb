@@ -3,26 +3,7 @@
 module Tasks
   # See: spec/services/tasks/create_task_spec.rb
   class CreateTask
-    class Result
-      attr_reader :task, :errors
-
-      def initialize(task: nil, errors: [])
-        @task = task
-        @errors = errors
-      end
-
-      def success?
-        errors.empty?
-      end
-
-      def failure?
-        !success?
-      end
-    end
-
-    def self.call(params)
-      new(params).call
-    end
+  extend ApplicationService
 
     def initialize(params)
       @creator = params[:creator]
@@ -32,19 +13,19 @@ module Tasks
     end
 
     def call
-      return Result.new(errors: [ "Creator is required" ]) unless creator
+      return ServiceResult.new(errors: [ "Creator is required" ]) unless creator
 
       ActiveRecord::Base.transaction do
         task = create_task
-        return Result.new(errors: task.errors.full_messages) unless task.valid?
+        return ServiceResult.new(errors: task.errors.full_messages) unless task.valid?
 
         create_creator_link(task)
         create_assignee_links(task)
 
-        Result.new(task: task)
+        ServiceResult.new(result: task)
       end
     rescue StandardError => e
-      Result.new(errors: [ e.message ])
+      ServiceResult.new(errors: [ e.message ])
     end
 
     private

@@ -22,16 +22,16 @@ RSpec.describe Tasks::CreateTask, type: :service do
         result = described_class.call(params)
 
         expect(result.success?).to be true
-        expect(result.task).to be_persisted
-        expect(result.task.title).to eq("New Task")
-        expect(result.task.description).to eq("Task description")
-        expect(result.task.state).to eq(Task::TODO)
+        expect(result.result).to be_persisted
+        expect(result.result.title).to eq("New Task")
+        expect(result.result.description).to eq("Task description")
+        expect(result.result.state).to eq(Task::TODO)
       end
 
       it "links creator with creator role" do
         result = described_class.call(params)
 
-        creator_link = result.task.task_users.find_by(user: creator)
+        creator_link = result.result.task_users.find_by(user: creator)
         expect(creator_link).to be_present
         expect(creator_link.role).to eq(TaskUser::CREATOR)
       end
@@ -39,7 +39,7 @@ RSpec.describe Tasks::CreateTask, type: :service do
       it "links assignees with assignee role" do
         result = described_class.call(params)
 
-        assignee_links = result.task.task_users.where(user: [ assignee1, assignee2 ])
+        assignee_links = result.result.task_users.where(user: [ assignee1, assignee2 ])
         expect(assignee_links.count).to eq(2)
         assignee_links.each do |link|
           expect(link.role).to eq(TaskUser::ASSIGNEE)
@@ -67,10 +67,10 @@ RSpec.describe Tasks::CreateTask, type: :service do
         result = described_class.call(params)
 
         expect(result.success?).to be true
-        expect(result.task.title).to eq("Simple Task")
-        expect(result.task.description).to be_nil
-        expect(result.task.state).to eq(Task::TODO)
-        expect(result.task.task_users.count).to eq(1) # Only creator
+        expect(result.result.title).to eq("Simple Task")
+        expect(result.result.description).to be_nil
+        expect(result.result.state).to eq(Task::TODO)
+        expect(result.result.task_users.count).to eq(1) # Only creator
       end
     end
 
@@ -89,7 +89,7 @@ RSpec.describe Tasks::CreateTask, type: :service do
           expect(result.failure?).to be true
           expect(result.success?).to be false
           expect(result.errors).to include("Title can't be blank")
-          expect(result.task).to be_nil
+          expect(result.result).to be_nil
         end
       end
 
