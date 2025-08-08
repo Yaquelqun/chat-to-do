@@ -85,5 +85,30 @@ RSpec.describe SidebarComponent, type: :component do
       expect(page).to have_button("Create Task")
       expect(page).to have_css("[data-action='click->sidebar#openTaskModal']")
     end
+
+    it "displays task lists for created and assigned tasks" do
+      created_task = create(:task, title: "My Created Task")
+      assigned_task = create(:task, title: "My Assigned Task")
+      
+      create(:task_user, user: user, task: created_task, role: TaskUser::CREATOR)
+      create(:task_user, user: user, task: assigned_task, role: TaskUser::ASSIGNEE)
+
+      component = described_class.new(user: user)
+
+      render_inline(component)
+
+      expect(page).to have_css(".task-list", count: 2)
+      expect(page).to have_text("Created by me")
+      expect(page).to have_text("Assigned to me")
+    end
+
+    it "shows empty states when user has no tasks" do
+      component = described_class.new(user: user)
+
+      render_inline(component)
+
+      expect(page).to have_css(".task-list-empty", count: 2)
+      expect(page).to have_text("No tasks found")
+    end
   end
 end

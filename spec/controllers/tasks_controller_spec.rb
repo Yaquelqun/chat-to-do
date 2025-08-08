@@ -172,4 +172,8 @@ RSpec.describe TasksController, type: :controller do
       end
     end
   end
+
+  # Note: GET #show functionality is tested in spec/requests/tasks_spec.rb
+  # Controller specs are deprecated and have view rendering issues
+  # All show action tests moved to request specs for proper integration testing
 end

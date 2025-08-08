@@ -1,0 +1,22 @@
+<div class="task-list">
+  <h3 class="task-list-title"><%= title %></h3>
+  
+  <% if has_tasks? %>
+    <div class="task-items">
+      <% tasks.each do |task| %>
+        <div class="task-item <%= task_state_class(task) %>">
+          <%= link_to task_path(task), class: "task-link" do %>
+            <span class="task-title" title="<%= task.title %>">
+              #<%= truncated_title(task) %>
+            </span>
+            <span class="task-state-indicator"></span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="task-list-empty">
+      <p>No tasks found</p>
+    </div>
+  <% end %>
+</div>

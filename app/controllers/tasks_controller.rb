@@ -2,6 +2,14 @@
 
 class TasksController < ApplicationController
   before_action :require_login
+  before_action :find_user_task, only: [:show]
+
+  rescue_from ActiveRecord::RecordNotFound, with: :handle_not_found
+
+  def show
+    @creator = @task.task_users.find_by(role: TaskUser::CREATOR)&.user
+    @assignees = @task.task_users.where(role: TaskUser::ASSIGNEE).includes(:user).map(&:user)
+  end
 
   def create
     result = Tasks::CreateTask.call(
@@ -37,6 +45,11 @@ class TasksController < ApplicationController
 
   private
 
+  def find_user_task
+    # Only allow users to see tasks they're involved in (creator or assignee)
+    @task = current_user.assigned_tasks.find(params[:id])
+  end
+
   def task_params
     params.require(:task).permit(:title, :description, assignee_ids: [])
   end
@@ -63,6 +76,18 @@ class TasksController < ApplicationController
         }, status: :unauthorized
       end
       format.html { redirect_to login_path, alert: "Please log in to continue" }
+    end
+  end
+
+  def handle_not_found
+    respond_to do |format|
+      format.json do
+        render json: {
+          status: "error",
+          message: "Task not found"
+        }, status: :not_found
+      end
+      format.html { redirect_to dashboard_path, alert: "Task not found" }
     end
   end
 end

@@ -10,6 +10,12 @@
       <button type="button" class="create-task-button" data-action="click->sidebar#openTaskModal">
         Create Task
       </button>
+      
+      <!-- Task Lists -->
+      <div class="task-lists">
+        <%= render TaskListComponent.new(title: "Created by me", tasks: user.created_tasks) %>
+        <%= render TaskListComponent.new(title: "Assigned to me", tasks: user.assigned_tasks) %>
+      </div>
     </div>
 
     <!-- User Menu Footer -->

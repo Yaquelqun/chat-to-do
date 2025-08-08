@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   # Task routes
-  resources :tasks, only: [ :create ]
+  resources :tasks, only: [ :create, :show ]
 
   # Dashboard route
   get "/dashboard", to: "dashboard#show"

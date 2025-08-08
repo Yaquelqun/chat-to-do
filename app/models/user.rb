@@ -11,4 +11,16 @@ class User < ApplicationRecord
   validates :pseudo, presence: true, uniqueness: true
 
   before_save { self.email = email.downcase }
+
+  # Returns tasks where the user is the creator
+  def created_tasks
+    tasks.joins(:task_users)
+         .where(task_users: { role: TaskUser::CREATOR })
+         .order(created_at: :desc)
+  end
+
+  # Returns tasks where the user is assigned (both created and assigned)
+  def assigned_tasks
+    tasks.order(created_at: :desc)
+  end
 end

@@ -408,6 +408,109 @@ code, pre {
   font-size: 0.9rem;
 }
 
+/* Task List Styles - Slack-inspired */
+.task-lists {
+  margin-top: 1.5rem;
+}
+
+.task-list {
+  margin-bottom: 2rem;
+}
+
+.task-list-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.5rem 0;
+  padding: 0 0.5rem;
+}
+
+.task-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.task-item {
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+}
+
+.task-item:hover {
+  background-color: var(--color-bg);
+}
+
+.task-link {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.task-link:hover {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.task-title {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: inherit;
+}
+
+.task-state-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.task-state-todo .task-state-indicator {
+  background-color: #6b7280;
+}
+
+.task-state-ongoing .task-state-indicator {
+  background-color: #f59e0b;
+}
+
+.task-state-done .task-state-indicator {
+  background-color: #10b981;
+}
+
+.task-state-cancelled .task-state-indicator {
+  background-color: #ef4444;
+}
+
+.task-list-empty {
+  padding: 1rem 0.5rem;
+  text-align: center;
+  color: var(--color-secondary);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* Active task styling when on task page */
+.task-item.active .task-link {
+  background-color: var(--color-link);
+  color: white;
+}
+
+.task-item.active .task-link:hover {
+  background-color: #3b82f6;
+  color: white;
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .sidebar {
@@ -435,5 +538,17 @@ code, pre {
 
   .modal-header, .modal-body {
     padding: 0.75rem;
+  }
+  
+  .task-lists {
+    margin-top: 1rem;
+  }
+  
+  .task-link {
+    padding: 6px 12px;
+  }
+  
+  .task-title {
+    font-size: 0.85rem;
   }
 }

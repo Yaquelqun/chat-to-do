@@ -1,0 +1,21 @@
+<h1><%= @task.title %></h1>
+
+<% if @task.description.present? %>
+  <p><%= @task.description %></p>
+<% end %>
+
+<div class="task-creator">
+  <h3>Creator: <%= @creator&.pseudo || "Unknown" %></h3>
+</div>
+
+<% if @assignees.any? %>
+  <div class="task-assignees">
+    <h3>Assignees:</h3>
+    <% @assignees.each do |assignee| %>
+      <p><%= assignee.pseudo %> (<%= assignee.email %>)</p>
+    <% end %>
+  </div>
+<% end %>
+
+<p>Status: <%= @task.state.titleize %></p>
+<p>Created: <%= @task.created_at.strftime("%B %d, %Y") %></p>
