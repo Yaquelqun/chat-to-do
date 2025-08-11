@@ -1,20 +1,43 @@
-<h1 class="task-header task-state-<%= @task.state %>"><%= @task.title %> - <%= @task.state.titleize %></h1>
+<h1 class="task-header task-state-<%= @task.state %>"><%= @task.title %></h1>
 
-<% if @task.description.present? %>
-  <p><%= @task.description %></p>
-<% end %>
-
-<div class="task-creator">
-  <h3>Creator: <%= @creator&.pseudo || "Unknown" %></h3>
-</div>
-
-<% if @assignees.any? %>
-  <div class="task-assignees">
-    <h3>Assignees:</h3>
-    <% @assignees.each do |assignee| %>
-      <p><%= assignee.pseudo %> (<%= assignee.email %>)</p>
+<%= render CollapsiblePanelComponent.new(title: "Task Details") do %>
+  <div class="panel-content-column">
+    <% if @task.description.present? %>
+      <div>
+        <h3>Description</h3>
+        <div class="task-description">
+          <%= @task.description %>
+        </div>
+      </div>
     <% end %>
+    
+    <div class="task-meta">
+      <div class="meta-item">
+        <div class="meta-label">Creator</div>
+        <div class="meta-value"><%= @creator&.pseudo || "Unknown" %></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel-content-column">
+    <% if @assignees.any? %>
+      <div>
+        <h3>Assignees</h3>
+        <div class="assignee-list">
+          <% @assignees.each do |assignee| %>
+            <div class="assignee-item">
+              <%= assignee.pseudo %> (<%= assignee.email %>)
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    
+    <div class="task-meta">
+      <div class="meta-item">
+        <div class="meta-label">Created</div>
+        <div class="meta-value"><%= @task.created_at.strftime("%B %d, %Y") %></div>
+      </div>
+    </div>
   </div>
 <% end %>
-
-<p>Created: <%= @task.created_at.strftime("%B %d, %Y") %></p>
